@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "scripts": {
+    "build:kotlin": "mise exec -- gradle compileProductionExecutableKotlinWasmJs",
+    "dev": "npm run build:kotlin && wrangler dev",
+    "check": "npm run build:kotlin && npm run typecheck && wrangler deploy --dry-run",
+    "cf-typegen": "wrangler types ./worker-configuration.d.ts",
+    "typecheck": "npm run cf-typegen && tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "wrangler": "4.119.0"
+  }
+}
